@@ -224,9 +224,9 @@ void ATBG_Player::FieldAttack_Hit()
 
 		UGameplayStatics::OpenLevel(this, LevelName);
 	}
-	FName LevelName = BattleLevelName.ToSoftObjectPath().GetAssetFName();
+	//FName LevelName = BattleLevelName.ToSoftObjectPath().GetAssetFName();
 
-	UGameplayStatics::OpenLevel(this, LevelName);
+	//UGameplayStatics::OpenLevel(this, LevelName);
 
 
 	DrawDebugCapsule(
