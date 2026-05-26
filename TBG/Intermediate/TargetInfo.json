@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "TBG",
+			"Path": "..\\Source\\TBG.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "TBGEditor",
+			"Path": "..\\Source\\TBGEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

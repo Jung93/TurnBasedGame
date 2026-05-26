@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\TBG.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\TBG.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\TBGEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\.vsconfig" />
+    <None Include="..\..\Adventure_Pack_2.png" />
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\TBG">
+      <UniqueIdentifier>{B3CB3C12-C424-3BB4-B052-24616E63D61F}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\TBG\TBG.Build.cs">
+      <Filter>Source\TBG</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\TBG\TBG.cpp">
+      <Filter>Source\TBG</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TBG\TBG.h">
+      <Filter>Source\TBG</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\TBG\TBG_AnimInstance.cpp">
+      <Filter>Source\TBG</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TBG\TBG_AnimInstance.h">
+      <Filter>Source\TBG</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\TBG\TBG_BattleGameModeBase.cpp">
+      <Filter>Source\TBG</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TBG\TBG_BattleGameModeBase.h">
+      <Filter>Source\TBG</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\TBG\TBG_Enemy.cpp">
+      <Filter>Source\TBG</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TBG\TBG_Enemy.h">
+      <Filter>Source\TBG</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\TBG\TBG_GameModeBase.cpp">
+      <Filter>Source\TBG</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TBG\TBG_GameModeBase.h">
+      <Filter>Source\TBG</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\TBG\TBG_Player.cpp">
+      <Filter>Source\TBG</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TBG\TBG_Player.h">
+      <Filter>Source\TBG</Filter>
+    </ClInclude>
+    <Filter Include="Source\TBG\Controller">
+      <UniqueIdentifier>{18285D3E-CC2F-3864-AF72-2A3B8CEDD522}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\TBG\Controller\TBG_BattleController.cpp">
+      <Filter>Source\TBG\Controller</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TBG\Controller\TBG_BattleController.h">
+      <Filter>Source\TBG\Controller</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\TBG\Controller\TBG_PlayerController.cpp">
+      <Filter>Source\TBG\Controller</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TBG\Controller\TBG_PlayerController.h">
+      <Filter>Source\TBG\Controller</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
