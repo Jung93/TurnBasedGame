@@ -30,5 +30,7 @@ private:
 	TArray<ACharacter*> BattleOrder;
 
 
+	int32 CurrentOrder = 0;
+
 
 };

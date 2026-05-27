@@ -6,12 +6,25 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "InputActionValue.h"
+#include "System/TBG_GameInstance.h"
+#include "TBG_Enemy.h"
+#include "Kismet/GameplayStatics.h"
+
 
 void ATBG_BattleController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	UE_LOG(LogTemp, Error, TEXT("BattleStart"))
+    
+    UTBG_GameInstance* gm = Cast<UTBG_GameInstance>(GetGameInstance());
+
+    TSubclassOf<ATBG_Enemy> EnemyOnBattle = gm->GetEnemy();
+
+    if (EnemyOnBattle == nullptr)
+        return;
+
+
+
 
 }
 

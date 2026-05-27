@@ -13,7 +13,10 @@
 #include "TimerManager.h"
 #include "Kismet/GameplayStatics.h"
 #include "Controller/TBG_PlayerController.h"
-#include "TBG_GameModeBase.h"
+#include "System/TBG_GameModeBase.h"
+#include "System/TBG_GameInstance.h"
+
+#include "TBG_Enemy.h"
 
 // Sets default values
 ATBG_Player::ATBG_Player()
@@ -216,17 +219,20 @@ void ATBG_Player::FieldAttack_Hit()
 
 	FColor drawColor = FColor::Green;
 
-	if (bResult && hitResult.GetActor()->IsValidLowLevel())
+	ATBG_Enemy* HitEnemy = Cast<ATBG_Enemy>(hitResult.GetActor());
+
+	if (bResult && HitEnemy->IsValidLowLevel())
 	{
 		drawColor = FColor::Red;
 
-		FName LevelName = BattleLevelName.ToSoftObjectPath().GetAssetFName();
+		UTBG_GameInstance* GM = Cast<UTBG_GameInstance>(GetGameInstance());
 
+		GM->SetEnemyOnBattle(HitEnemy->GetClass());
+
+
+		FName LevelName = BattleLevelName.ToSoftObjectPath().GetAssetFName();
 		UGameplayStatics::OpenLevel(this, LevelName);
 	}
-	//FName LevelName = BattleLevelName.ToSoftObjectPath().GetAssetFName();
-
-	//UGameplayStatics::OpenLevel(this, LevelName);
 
 
 	DrawDebugCapsule(

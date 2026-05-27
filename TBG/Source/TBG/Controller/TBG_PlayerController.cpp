@@ -6,7 +6,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "InputActionValue.h"
-#include "TBG_BattleGameModeBase.h"
+#include "System/TBG_BattleGameModeBase.h"
 
 void ATBG_PlayerController::BeginPlay()
 {
