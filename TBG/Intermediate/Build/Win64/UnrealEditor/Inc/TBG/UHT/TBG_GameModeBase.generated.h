@@ -4,7 +4,7 @@
 	DO NOT modify this manually! Edit the corresponding .h files instead!
 ===========================================================================*/
 
-// IWYU pragma: private, include "TBG_GameModeBase.h"
+// IWYU pragma: private, include "System/TBG_GameModeBase.h"
 #include "UObject/ObjectMacros.h"
 #include "UObject/ScriptMacros.h"
 
@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define TBG_TBG_GameModeBase_generated_h
 
-#define FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_TBG_GameModeBase_h_17_INCLASS_NO_PURE_DECLS \
+#define FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_System_TBG_GameModeBase_h_17_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesATBG_GameModeBase(); \
 	friend struct Z_Construct_UClass_ATBG_GameModeBase_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(ATBG_GameModeBase)
 
 
-#define FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_TBG_GameModeBase_h_17_ENHANCED_CONSTRUCTORS \
+#define FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_System_TBG_GameModeBase_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	ATBG_GameModeBase(ATBG_GameModeBase&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~ATBG_GameModeBase();
 
 
-#define FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_TBG_GameModeBase_h_14_PROLOG
-#define FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_TBG_GameModeBase_h_17_GENERATED_BODY \
+#define FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_System_TBG_GameModeBase_h_14_PROLOG
+#define FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_System_TBG_GameModeBase_h_17_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_TBG_GameModeBase_h_17_INCLASS_NO_PURE_DECLS \
-	FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_TBG_GameModeBase_h_17_ENHANCED_CONSTRUCTORS \
+	FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_System_TBG_GameModeBase_h_17_INCLASS_NO_PURE_DECLS \
+	FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_System_TBG_GameModeBase_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -48,7 +48,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> TBG_API UClass* StaticClass<class ATBG_GameModeBase>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_TBG_GameModeBase_h
+#define CURRENT_FILE_ID FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_System_TBG_GameModeBase_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

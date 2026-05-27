@@ -5,7 +5,7 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#include "TBG/TBG_GameModeBase.h"
+#include "TBG/System/TBG_GameModeBase.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeTBG_GameModeBase() {}
 
@@ -33,8 +33,8 @@ struct Z_Construct_UClass_ATBG_GameModeBase_Statics
 		{ "Comment", "/**\n * \n */" },
 #endif
 		{ "HideCategories", "Info Rendering MovementReplication Replication Actor Input Movement Collision Rendering HLOD WorldPartition DataLayers Transformation" },
-		{ "IncludePath", "TBG_GameModeBase.h" },
-		{ "ModuleRelativePath", "TBG_GameModeBase.h" },
+		{ "IncludePath", "System/TBG_GameModeBase.h" },
+		{ "ModuleRelativePath", "System/TBG_GameModeBase.h" },
 		{ "ShowCategories", "Input|MouseInput Input|TouchInput" },
 	};
 #endif // WITH_METADATA
@@ -81,14 +81,14 @@ ATBG_GameModeBase::~ATBG_GameModeBase() {}
 // End Class ATBG_GameModeBase
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_TBG_GameModeBase_h_Statics
+struct Z_CompiledInDeferFile_FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_System_TBG_GameModeBase_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ATBG_GameModeBase, ATBG_GameModeBase::StaticClass, TEXT("ATBG_GameModeBase"), &Z_Registration_Info_UClass_ATBG_GameModeBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ATBG_GameModeBase), 1882443790U) },
+		{ Z_Construct_UClass_ATBG_GameModeBase, ATBG_GameModeBase::StaticClass, TEXT("ATBG_GameModeBase"), &Z_Registration_Info_UClass_ATBG_GameModeBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ATBG_GameModeBase), 700558621U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_TBG_GameModeBase_h_585630942(TEXT("/Script/TBG"),
-	Z_CompiledInDeferFile_FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_TBG_GameModeBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_TBG_GameModeBase_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_System_TBG_GameModeBase_h_3190672125(TEXT("/Script/TBG"),
+	Z_CompiledInDeferFile_FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_System_TBG_GameModeBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_System_TBG_GameModeBase_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

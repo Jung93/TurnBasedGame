@@ -5,7 +5,7 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#include "TBG/TBG_BattleGameModeBase.h"
+#include "TBG/System/TBG_BattleGameModeBase.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeTBG_BattleGameModeBase() {}
 
@@ -34,15 +34,15 @@ struct Z_Construct_UClass_ATBG_BattleGameModeBase_Statics
 		{ "Comment", "/**\n * \n */" },
 #endif
 		{ "HideCategories", "Info Rendering MovementReplication Replication Actor Input Movement Collision Rendering HLOD WorldPartition DataLayers Transformation" },
-		{ "IncludePath", "TBG_BattleGameModeBase.h" },
-		{ "ModuleRelativePath", "TBG_BattleGameModeBase.h" },
+		{ "IncludePath", "System/TBG_BattleGameModeBase.h" },
+		{ "ModuleRelativePath", "System/TBG_BattleGameModeBase.h" },
 		{ "ShowCategories", "Input|MouseInput Input|TouchInput" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_FirstMove_MetaData[] = {
-		{ "ModuleRelativePath", "TBG_BattleGameModeBase.h" },
+		{ "ModuleRelativePath", "System/TBG_BattleGameModeBase.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BattleOrder_MetaData[] = {
-		{ "ModuleRelativePath", "TBG_BattleGameModeBase.h" },
+		{ "ModuleRelativePath", "System/TBG_BattleGameModeBase.h" },
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_FirstMove_Inner;
@@ -104,14 +104,14 @@ ATBG_BattleGameModeBase::~ATBG_BattleGameModeBase() {}
 // End Class ATBG_BattleGameModeBase
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_TBG_BattleGameModeBase_h_Statics
+struct Z_CompiledInDeferFile_FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_System_TBG_BattleGameModeBase_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ATBG_BattleGameModeBase, ATBG_BattleGameModeBase::StaticClass, TEXT("ATBG_BattleGameModeBase"), &Z_Registration_Info_UClass_ATBG_BattleGameModeBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ATBG_BattleGameModeBase), 3046678282U) },
+		{ Z_Construct_UClass_ATBG_BattleGameModeBase, ATBG_BattleGameModeBase::StaticClass, TEXT("ATBG_BattleGameModeBase"), &Z_Registration_Info_UClass_ATBG_BattleGameModeBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ATBG_BattleGameModeBase), 3651091001U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_TBG_BattleGameModeBase_h_3820742305(TEXT("/Script/TBG"),
-	Z_CompiledInDeferFile_FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_TBG_BattleGameModeBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_TBG_BattleGameModeBase_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_System_TBG_BattleGameModeBase_h_1440322990(TEXT("/Script/TBG"),
+	Z_CompiledInDeferFile_FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_System_TBG_BattleGameModeBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_user_Unreal_Turn_Based_Game_TurnBasedGame_TBG_Source_TBG_System_TBG_BattleGameModeBase_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

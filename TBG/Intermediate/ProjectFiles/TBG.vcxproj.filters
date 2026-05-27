@@ -11,8 +11,9 @@
     <None Include="..\..\Source\TBGEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.editorconfig" />
+    <None Include="..\..\.gitignore" />
     <None Include="..\..\.vsconfig" />
-    <None Include="..\..\Adventure_Pack_2.png" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
     </Filter>
@@ -46,22 +47,10 @@
     <ClInclude Include="..\..\Source\TBG\TBG_AnimInstance.h">
       <Filter>Source\TBG</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\TBG\TBG_BattleGameModeBase.cpp">
-      <Filter>Source\TBG</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\TBG\TBG_BattleGameModeBase.h">
-      <Filter>Source\TBG</Filter>
-    </ClInclude>
     <ClCompile Include="..\..\Source\TBG\TBG_Enemy.cpp">
       <Filter>Source\TBG</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\TBG\TBG_Enemy.h">
-      <Filter>Source\TBG</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\TBG\TBG_GameModeBase.cpp">
-      <Filter>Source\TBG</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\TBG\TBG_GameModeBase.h">
       <Filter>Source\TBG</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\TBG\TBG_Player.cpp">
@@ -84,6 +73,27 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\TBG\Controller\TBG_PlayerController.h">
       <Filter>Source\TBG\Controller</Filter>
+    </ClInclude>
+    <Filter Include="Source\TBG\System">
+      <UniqueIdentifier>{6EC384EC-A877-39F0-8FE3-55AE800D3E60}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\TBG\System\TBG_BattleGameModeBase.cpp">
+      <Filter>Source\TBG\System</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TBG\System\TBG_BattleGameModeBase.h">
+      <Filter>Source\TBG\System</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\TBG\System\TBG_GameInstance.cpp">
+      <Filter>Source\TBG\System</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TBG\System\TBG_GameInstance.h">
+      <Filter>Source\TBG\System</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\TBG\System\TBG_GameModeBase.cpp">
+      <Filter>Source\TBG\System</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TBG\System\TBG_GameModeBase.h">
+      <Filter>Source\TBG\System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
