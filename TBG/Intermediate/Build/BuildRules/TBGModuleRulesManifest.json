@@ -1,8 +1,0 @@
-{
-	"SourceFiles": [
-		"C:\\Users\\user\\Unreal\\Turn-Based Game\\TurnBasedGame\\TBG\\Source\\TBG\\TBG.Build.cs",
-		"C:\\Users\\user\\Unreal\\Turn-Based Game\\TurnBasedGame\\TBG\\Source\\TBG.Target.cs",
-		"C:\\Users\\user\\Unreal\\Turn-Based Game\\TurnBasedGame\\TBG\\Source\\TBGEditor.Target.cs"
-	],
-	"EngineVersion": "5.4.4"
-}
