@@ -88,7 +88,7 @@ private:
 
 	float AttackRange = 300.0f;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Battle", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(BlueprintReadOnly, Category = "Battle", meta = (AllowPrivateAccess = "true"))
 	TSoftObjectPtr<UWorld> BattleLevelName;
 
 };
