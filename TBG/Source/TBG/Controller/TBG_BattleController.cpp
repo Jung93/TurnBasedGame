@@ -10,8 +10,6 @@
 #include "TBG_Enemy.h"
 #include "Kismet/GameplayStatics.h"
 
-#include "GameFramework/CharacterMovementComponent.h"
-#include "Components/CapsuleComponent.h"
 
 
 void ATBG_BattleController::BeginPlay()
@@ -19,28 +17,6 @@ void ATBG_BattleController::BeginPlay()
 	Super::BeginPlay();
 
     
-    UTBG_GameInstance* gm = Cast<UTBG_GameInstance>(GetGameInstance());
-
-    TSubclassOf<ATBG_Enemy> EnemyOnBattle = gm->GetEnemy();
-
-    if (EnemyOnBattle == nullptr)
-        return;
-
-    const ATBG_Enemy* EnemyCDO = GetDefault<ATBG_Enemy>(EnemyOnBattle);
-    TArray<TSubclassOf<ATBG_Enemy>> EnemyInfos = EnemyCDO->GetEnemyInfos();
-
-    float Spacing = 400.f;
-    float TotalWidth = Spacing * (EnemyInfos.Num() - 1);
-
-    for (int32 i = 0; i < EnemyInfos.Num(); i++)
-    {
-        if (EnemyInfos[i])
-        {
-            FVector EnemySpawnLocation(0.f, -TotalWidth * 0.5f + Spacing * i, 192.f);
-            ATBG_Enemy* SpawnedEnemy = GetWorld()->SpawnActor<ATBG_Enemy>(EnemyInfos[i], FTransform(EnemySpawnLocation));
-            SpawnedEnemy->SpawnDefaultController();
-        }
-    }
 
 }
 

@@ -19,6 +19,7 @@ class TBG_API ATBG_BattleGameModeBase : public AGameModeBase
 public:
 	ATBG_BattleGameModeBase();
 
+	virtual void BeginPlay() override;
 
 private:
 

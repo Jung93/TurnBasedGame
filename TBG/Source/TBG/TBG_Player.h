@@ -91,4 +91,8 @@ private:
 	UPROPERTY(BlueprintReadOnly, Category = "Battle", meta = (AllowPrivateAccess = "true"))
 	TSoftObjectPtr<UWorld> BattleLevelName;
 
+
+	UPROPERTY(EditAnywhere, Category = "Party", meta = (AllowPrivateAccess = "true"))
+	TArray<TSubclassOf<ATBG_Player>> PlayerParty;
+
 };
