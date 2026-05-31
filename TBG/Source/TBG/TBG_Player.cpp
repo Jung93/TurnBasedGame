@@ -228,7 +228,7 @@ void ATBG_Player::FieldAttack_Hit()
 		UTBG_GameInstance* GM = Cast<UTBG_GameInstance>(GetGameInstance());
 
 		GM->SetEnemyOnBattle(HitEnemy->GetClass());
-		GM->SetPlayerPartyOnBattle(PlayerParty);
+		GM->SetPlayerPartyOnBattle(this->GetClass(), PlayerParty);
 
 		FName LevelName = BattleLevelName.ToSoftObjectPath().GetAssetFName();
 		UGameplayStatics::OpenLevel(this, LevelName);

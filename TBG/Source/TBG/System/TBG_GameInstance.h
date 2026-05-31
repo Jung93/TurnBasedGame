@@ -19,7 +19,7 @@ public:
 	UTBG_GameInstance();
 
 	//플레이어 파티
-	void SetPlayerPartyOnBattle(TArray<TSubclassOf<class ATBG_Player>> PlayerParty) { PlayerPartyOnBattle = PlayerParty; }
+	void SetPlayerPartyOnBattle(TSubclassOf<class ATBG_Player> Player, TArray<TSubclassOf<class ATBG_Player>> PlayerParty);
 
 	//필드 적
 	void SetEnemyOnBattle(TSubclassOf<class ATBG_Enemy> EnemyClass) { EnemyOnBattle = EnemyClass; }
