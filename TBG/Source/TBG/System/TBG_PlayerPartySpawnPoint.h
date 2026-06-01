@@ -20,4 +20,6 @@ public:
 private:
 	UPROPERTY(VisibleAnywhere)
 	class UArrowComponent* ArrowComponent;
+
+
 };

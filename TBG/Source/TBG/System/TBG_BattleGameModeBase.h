@@ -21,14 +21,18 @@ public:
 
 	virtual void BeginPlay() override;
 
+	UFUNCTION(BlueprintCallable)
+	TArray<class ATBG_Character*> GetBattleOrder() { return BattleOrder; };
+
+
 private:
 
 	UPROPERTY()
-	TArray<ACharacter*> FirstMove;
+	TArray<class ATBG_Character*> FirstMove;
 
 
-	UPROPERTY()
-	TArray<ACharacter*> BattleOrder;
+	UPROPERTY(VisibleAnywhere)
+	TArray<class ATBG_Character*> BattleOrder;
 
 
 	int32 CurrentOrder = 0;

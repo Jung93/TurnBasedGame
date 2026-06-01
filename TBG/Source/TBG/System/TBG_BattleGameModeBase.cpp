@@ -5,6 +5,7 @@
 #include "System/TBG_GameInstance.h"
 #include "System/TBG_EnemySpawnPoint.h"
 #include "System/TBG_PlayerPartySpawnPoint.h"
+#include "Characters/TBG_Character.h"
 #include "TBG_Enemy.h"
 #include "TBG_Player.h"
 #include "EngineUtils.h"
@@ -25,7 +26,7 @@ void ATBG_BattleGameModeBase::BeginPlay()
     TSubclassOf<ATBG_Enemy> EnemyOnBattle = Gm->GetEnemy();
     TArray<TSubclassOf<ATBG_Player>> PlayerPartyOnBattle = Gm->GetPlayerParty();
 
-    if (EnemyOnBattle == nullptr && PlayerPartyOnBattle.IsEmpty())
+    if (EnemyOnBattle == nullptr || PlayerPartyOnBattle.IsEmpty())
         return;
 
     const ATBG_Enemy* FieldEnemy = GetDefault<ATBG_Enemy>(EnemyOnBattle);
@@ -54,8 +55,8 @@ void ATBG_BattleGameModeBase::BeginPlay()
                 ATBG_Enemy* SpawnedEnemy = GetWorld()->SpawnActor<ATBG_Enemy>(EnemyInfos[i], FTransform(SpawnRotation, EnemySpawnLocation));
                 SpawnedEnemy->SpawnDefaultController();
 
-
                 //BattleOrder에 SpawnedEnemy 삽입
+                BattleOrder.Add(SpawnedEnemy);
 
 
             }
@@ -86,18 +87,8 @@ void ATBG_BattleGameModeBase::BeginPlay()
                 SpawnedParty->SpawnDefaultController();
 
 
-                //BattleOrder에 SpawnedEnemy 삽입
-
-
-
-
-
-
-                if (i == 0)
-                {
-                    ATBG_BattleController* BC = Cast<ATBG_BattleController>(GetWorld()->GetFirstPlayerController());
-                    BC->Possess(SpawnedParty);
-                }
+                //BattleOrder에 SpawnedParty 삽입
+                BattleOrder.Add(SpawnedParty);
 
 
             }
@@ -120,10 +111,18 @@ void ATBG_BattleGameModeBase::BeginPlay()
     //}
 
 
+        //임시 컨트롤러 빙의. 나중에는 BattleOrder에서 첫번째 캐릭터에 빙의. 또는 FirstMove의 첫  캐릭터
 
+    
+        BattleOrder.Sort([](const ATBG_Character& a, const ATBG_Character& b)
+            {
+                if (a.Agility > b.Agility)
+                    return true;
+                return false;
+            });
 
-
-
+        ATBG_BattleController* BC = Cast<ATBG_BattleController>(GetWorld()->GetFirstPlayerController());
+        BC->Possess(BattleOrder[2]);
 }
 
 

@@ -3,11 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
+#include "Characters/TBG_Character.h"
 #include "TBG_Enemy.generated.h"
 
 UCLASS()
-class TBG_API ATBG_Enemy : public ACharacter
+class TBG_API ATBG_Enemy : public ATBG_Character
 {
 	GENERATED_BODY()
 

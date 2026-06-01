@@ -474,3 +474,6 @@ Plugins/**/Intermediate/*
 # Cache files for the editor to use
 DerivedDataCache/*
 UnrealEngine5/Unreal5_edu/Content/ParagonGrux/FX/Materials/Functions/MF_FadeBasedOnViewAngle.uasset
+
+# Claude Code
+CLAUDE.md

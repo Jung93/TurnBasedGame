@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
+#include "Characters/TBG_Character.h"
 #include "TBG_Player.generated.h"
 
 class USpringArmComponent;
@@ -14,7 +14,7 @@ struct FInputActionValue;
 
 
 UCLASS()
-class TBG_API ATBG_Player : public ACharacter
+class TBG_API ATBG_Player : public ATBG_Character
 {
 	GENERATED_BODY()
 
