@@ -6,6 +6,32 @@
 #include "GameFramework/Character.h"
 #include "TBG_Character.generated.h"
 
+
+
+USTRUCT(BlueprintType)
+struct FStatus
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Status")
+	int32 Level = 1;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Status")
+	int32 HP = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Status")
+	int32 MP = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Status")
+	int32 Agility = 0;
+
+	bool operator>(const FStatus& Other) const
+	{
+		return Agility > Other.Agility;
+	};
+
+};
+
 UCLASS()
 class TBG_API ATBG_Character : public ACharacter
 {
@@ -15,25 +41,36 @@ public:
 	// Sets default values for this character's properties
 	ATBG_Character();
 
-protected:
-	// Called when the game starts or when spawned
+
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
+
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UFUNCTION(BlueprintCallable)
 	TSoftObjectPtr<UTexture2D> GetPortraitImage() { return Portrait; }
 
 
-	UPROPERTY(EditAnywhere, Category = "Status")
-	int32 Agility = 0;
+
+	bool operator>(const ATBG_Character& Other) const
+	{
+		return Status.Agility > Other.Status.Agility;
+	};
+
+
+
+public:	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Status")
+	FStatus Status;
 
 	UPROPERTY(EditAnywhere, Category = "Portrait")
 	TSoftObjectPtr<UTexture2D> Portrait = nullptr;
+
+
+
+
 
 };

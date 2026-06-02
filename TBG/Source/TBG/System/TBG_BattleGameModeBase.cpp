@@ -117,7 +117,7 @@ void ATBG_BattleGameModeBase::BeginPlay()
     
         BattleOrder.Sort([](const ATBG_Character& a, const ATBG_Character& b)
             {
-                if (a.Agility > b.Agility)
+                if (a > b)
                     return true;
                 return false;
             });
