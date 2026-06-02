@@ -37,5 +37,9 @@ private:
 
 	int32 CurrentOrder = 0;
 
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<class UTBG_BattleUI> BattleUIClass;
 
+	UPROPERTY()
+	class UTBG_BattleUI* BattleUI = nullptr;
 };

@@ -10,6 +10,7 @@
 #include "TBG_Player.h"
 #include "EngineUtils.h"
 #include "Controller/TBG_BattleController.h"
+#include "UI/TBG_BattleUI.h"
 
 ATBG_BattleGameModeBase::ATBG_BattleGameModeBase()
 {
@@ -123,6 +124,13 @@ void ATBG_BattleGameModeBase::BeginPlay()
 
         ATBG_BattleController* BC = Cast<ATBG_BattleController>(GetWorld()->GetFirstPlayerController());
         BC->Possess(BattleOrder[2]);
+
+    if (BattleUIClass)
+    {
+        BattleUI = CreateWidget<UTBG_BattleUI>(GetWorld()->GetFirstPlayerController(), BattleUIClass);
+        if (BattleUI)
+            BattleUI->AddToViewport();
+    }
 }
 
 
