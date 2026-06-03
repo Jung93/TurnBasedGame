@@ -66,7 +66,6 @@ void UTBG_BattleUI::SetBattleOrderPortrait(TArray<ATBG_Character*> Orders)
 		if (Texture)
 		{
 
-
 			USizeBox* SB = NewObject<USizeBox>(this);
 			SB->SetWidthOverride(128.f);
 			SB->SetHeightOverride(128.f);
