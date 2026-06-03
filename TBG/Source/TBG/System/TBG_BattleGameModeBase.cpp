@@ -129,7 +129,11 @@ void ATBG_BattleGameModeBase::BeginPlay()
     {
         BattleUI = CreateWidget<UTBG_BattleUI>(GetWorld()->GetFirstPlayerController(), BattleUIClass);
         if (BattleUI)
+        {
             BattleUI->AddToViewport();
+            BattleUI->SetBattleOrderPortrait(BattleOrder);
+        }
+
     }
 }
 

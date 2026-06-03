@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/VerticalBox.h"
+#include "Components/HorizontalBox.h"
 #include "TBG_BattleUI.generated.h"
 
 /**
@@ -19,7 +20,7 @@ public:
 
 	virtual void NativeConstruct() override;
 
-
+	void SetBattleOrderPortrait(TArray<class ATBG_Character*> Orders);
 
 public:
 	UPROPERTY(EditAnywhere, Category = "UI")
@@ -27,5 +28,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UVerticalBox* VerticalBox_Portrait;
+
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
+	UHorizontalBox* BattleOrder_Portrait;
 
 };

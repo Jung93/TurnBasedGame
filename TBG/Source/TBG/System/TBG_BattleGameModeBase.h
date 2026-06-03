@@ -21,6 +21,9 @@ public:
 
 	virtual void BeginPlay() override;
 
+
+	TArray<class ATBG_Character*> GetFirstMove() { return FirstMove; };
+
 	UFUNCTION(BlueprintCallable)
 	TArray<class ATBG_Character*> GetBattleOrder() { return BattleOrder; };
 
