@@ -21,6 +21,8 @@ public:
 	virtual void NativeConstruct() override;
 
 	void SetBattleOrderPortrait(TArray<class ATBG_Character*> Orders);
+	void SetBattleOrderPortraitOpacity();
+
 
 public:
 	UPROPERTY(EditAnywhere, Category = "UI")

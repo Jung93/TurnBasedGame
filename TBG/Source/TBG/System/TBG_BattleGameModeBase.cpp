@@ -132,9 +132,20 @@ void ATBG_BattleGameModeBase::BeginPlay()
         {
             BattleUI->AddToViewport();
             BattleUI->SetBattleOrderPortrait(BattleOrder);
+            BattleUI->SetBattleOrderPortraitOpacity();
         }
 
     }
+}
+
+void ATBG_BattleGameModeBase::InreaseOrder()
+{
+    CurrentOrder++;
+
+    if (CurrentOrder >= BattleOrder.Num())
+        CurrentOrder = 0;
+
+
 }
 
 

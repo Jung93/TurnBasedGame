@@ -28,6 +28,9 @@ public:
 	TArray<class ATBG_Character*> GetBattleOrder() { return BattleOrder; };
 
 
+	void InreaseOrder();
+	int32 GetCurrentOrder() { return CurrentOrder; }
+
 private:
 
 	UPROPERTY()

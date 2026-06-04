@@ -70,6 +70,9 @@ void UTBG_BattleUI::SetBattleOrderPortrait(TArray<ATBG_Character*> Orders)
 			SB->SetWidthOverride(128.f);
 			SB->SetHeightOverride(128.f);
 			UImage* PortraitImage = NewObject<UImage>(this);
+
+			FLinearColor Color = FLinearColor(1.f, 1.f, 1.f, 0.5f);
+			PortraitImage->SetColorAndOpacity(Color);
 			PortraitImage->SetBrushFromTexture(Texture);
 			SB->AddChild(PortraitImage);
 			BattleOrder_Portrait->AddChild(SB);
@@ -77,6 +80,20 @@ void UTBG_BattleUI::SetBattleOrderPortrait(TArray<ATBG_Character*> Orders)
 
 	}
 
+}
+
+void UTBG_BattleUI::SetBattleOrderPortraitOpacity()
+{
+	UImage* FirstPortraitImage = Cast<UImage>(Cast<USizeBox>(BattleOrder_Portrait->GetChildAt(0))->GetChildAt(0));
+
+	if(FirstPortraitImage)
+		FirstPortraitImage->SetColorAndOpacity(FLinearColor(1.f, 1.f, 1.f, 1.f));
+
+
+	UImage* LastPortraitImage = Cast<UImage>(Cast<USizeBox>(BattleOrder_Portrait->GetChildAt(BattleOrder_Portrait->GetChildrenCount() - 1))->GetChildAt(0));
+
+	if(LastPortraitImage)
+		LastPortraitImage->SetColorAndOpacity(FLinearColor(1.f, 1.f, 1.f, 0.5f));
 
 }
 
