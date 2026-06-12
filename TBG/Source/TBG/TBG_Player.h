@@ -52,6 +52,8 @@ public:
 	void FieldAttack_Hit();
 	void Attack_Hit();
 
+	const TArray<TSubclassOf<ATBG_Player>>& GetPlayerParty() const { return PlayerParty; }
+
 
 
 private:

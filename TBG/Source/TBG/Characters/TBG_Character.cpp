@@ -2,6 +2,7 @@
 
 
 #include "Characters/TBG_Character.h"
+#include "System/TBG_BattleGameModeBase.h"
 
 // Sets default values
 ATBG_Character::ATBG_Character()
@@ -29,6 +30,17 @@ void ATBG_Character::Tick(float DeltaTime)
 void ATBG_Character::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+}
+
+void ATBG_Character::EndTurn()
+{
+
+	ATBG_BattleGameModeBase* GameMode = Cast<ATBG_BattleGameModeBase>(GetWorld()->GetAuthGameMode());
+
+	if (GameMode)
+		GameMode->AdvancedTurn();
+
 
 }
 

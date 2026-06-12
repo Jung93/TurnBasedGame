@@ -19,5 +19,15 @@ class TBG_API ATBG_GameModeBase : public AGameModeBase
 public:
 	ATBG_GameModeBase();
 
+	virtual void BeginPlay() override;
+
+
+private:
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<class UTBG_FieldUI> FieldUIClass;
+
+	UPROPERTY()
+	class UTBG_FieldUI* FieldUI = nullptr;
+
 
 };

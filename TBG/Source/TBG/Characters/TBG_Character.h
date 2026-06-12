@@ -53,6 +53,8 @@ public:
 	TSoftObjectPtr<UTexture2D> GetPortraitImage() { return Portrait; }
 
 
+	void EndTurn();
+
 
 	bool operator>(const ATBG_Character& Other) const
 	{

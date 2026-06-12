@@ -36,14 +36,19 @@ void UTBG_BattleUI::NativeConstruct()
 		ATBG_Player* Party = PlayerClass->GetDefaultObject<ATBG_Player>();
 		TSoftObjectPtr<UTexture2D> PortraitImage = Party->GetPortraitImage();
 
+
 		if (!PortraitImage.IsNull() && PortraitUI->Portrait)
 		{
 			UTexture2D* Texture = PortraitImage.LoadSynchronous();
+			int32 HP = Party->Status.HP;
+			int32 MP = Party->Status.MP;
+
 
 			if (Texture)
 			{
 				PortraitUI->Portrait->SetBrushFromTexture(Texture);
-
+				PortraitUI->SetHPText(HP);
+				PortraitUI->SetMPText(MP);
 			}
 		}
 
@@ -95,5 +100,15 @@ void UTBG_BattleUI::SetBattleOrderPortraitOpacity()
 	if(LastPortraitImage)
 		LastPortraitImage->SetColorAndOpacity(FLinearColor(1.f, 1.f, 1.f, 0.5f));
 
+}
+
+void UTBG_BattleUI::ChangeBattleOrderPortrait()
+{
+
+	USizeBox* SB = Cast<USizeBox>(BattleOrder_Portrait->GetChildAt(0));
+
+	BattleOrder_Portrait->AddChild(SB);
+
+	SetBattleOrderPortraitOpacity();
 }
 

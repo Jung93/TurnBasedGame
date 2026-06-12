@@ -5,17 +5,16 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/VerticalBox.h"
-#include "Components/HorizontalBox.h"
-#include "TBG_BattleUI.generated.h"
+#include "TBG_FieldUI.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class TBG_API UTBG_BattleUI : public UUserWidget
+class TBG_API UTBG_FieldUI : public UUserWidget
 {
 	GENERATED_BODY()
-	
+
 public:
 
 	virtual void NativeConstruct() override;
@@ -32,9 +31,4 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
 	UVerticalBox* VerticalBox_Portrait;
-
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget))
-	UHorizontalBox* BattleOrder_Portrait;
-
 };

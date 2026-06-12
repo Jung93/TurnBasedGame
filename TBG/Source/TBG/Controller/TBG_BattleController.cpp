@@ -32,6 +32,7 @@ void ATBG_BattleController::SetupInputComponent()
     if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(InputComponent)) {
 
         EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ThisClass::Look);
+        EnhancedInputComponent->BindAction(ForTestAction, ETriggerEvent::Started, this, &ThisClass::ForTestFunction);
 
     }
 
@@ -47,4 +48,15 @@ void ATBG_BattleController::Look(const FInputActionValue& Value)
 
 	if (player)
 		player->Look(Value);
+}
+
+void ATBG_BattleController::ForTestFunction(const FInputActionValue& Value)
+{
+
+    ATBG_Player* player = Cast<ATBG_Player>(GetPawn());
+
+    if(player)
+        player->EndTurn();
+
+
 }

@@ -123,7 +123,7 @@ void ATBG_BattleGameModeBase::BeginPlay()
             });
 
         ATBG_BattleController* BC = Cast<ATBG_BattleController>(GetWorld()->GetFirstPlayerController());
-        BC->Possess(BattleOrder[2]);
+        BC->Possess(BattleOrder[0]);
 
     if (BattleUIClass)
     {
@@ -138,13 +138,37 @@ void ATBG_BattleGameModeBase::BeginPlay()
     }
 }
 
-void ATBG_BattleGameModeBase::InreaseOrder()
+
+
+void ATBG_BattleGameModeBase::AdvancedTurn()
 {
-    CurrentOrder++;
 
-    if (CurrentOrder >= BattleOrder.Num())
-        CurrentOrder = 0;
+    ATBG_Player* Player = Cast<ATBG_Player>(BattleOrder[0]);
 
+    if (!Player)
+        return;
+
+    BattleOrder.Add(Player);
+    BattleOrder.RemoveAt(0);
+
+    if (BattleUI)
+    {
+        BattleUI->ChangeBattleOrderPortrait();
+    }
+
+    ATBG_BattleController* BC = Cast<ATBG_BattleController>(GetWorld()->GetFirstPlayerController());
+
+    BC->UnPossess();
+
+
+    if (Cast<ATBG_Player>(BattleOrder[0]))
+    {
+
+        BC->Possess(BattleOrder[0]);
+    }
+    else
+    {
+    }
 
 }
 
