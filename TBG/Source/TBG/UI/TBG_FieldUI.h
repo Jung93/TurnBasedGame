@@ -19,10 +19,10 @@ public:
 
 	virtual void NativeConstruct() override;
 
-	void SetBattleOrderPortrait(TArray<class ATBG_Character*> Orders);
-	void SetBattleOrderPortraitOpacity();
+	//void SetBattleOrderPortrait(TArray<class ATBG_Character*> Orders);
+	//void SetBattleOrderPortraitOpacity();
 
-	void ChangeBattleOrderPortrait();
+	//void ChangeBattleOrderPortrait();
 
 
 public:

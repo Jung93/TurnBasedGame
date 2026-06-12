@@ -10,6 +10,7 @@
 #include "TBG_Enemy.h"
 #include "Kismet/GameplayStatics.h"
 
+#include "UI/TBG_BattleCommandUI.h"
 
 
 void ATBG_BattleController::BeginPlay()
@@ -17,7 +18,17 @@ void ATBG_BattleController::BeginPlay()
 	Super::BeginPlay();
 
     
+    BattleCommandUI = CreateWidget<UTBG_BattleCommandUI>(GetWorld()->GetFirstPlayerController(), BattleCommandUIClass);
+    BattleCommandUI->AddToViewport();
 
+    if (APawn* MyPawn = GetPawn())
+    {
+        FVector2D ScreenPos;
+        if (ProjectWorldLocationToScreen(MyPawn->GetActorLocation(), ScreenPos))
+        {
+            BattleCommandUI->SetLocation(ScreenPos);
+        }
+    }
 }
 
 void ATBG_BattleController::SetupInputComponent()

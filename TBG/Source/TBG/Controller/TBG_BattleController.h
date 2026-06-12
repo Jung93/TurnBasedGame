@@ -45,4 +45,11 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* ForTestAction;
+
+public:
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<class UTBG_BattleCommandUI> BattleCommandUIClass;
+
+	UPROPERTY()
+	class UTBG_BattleCommandUI* BattleCommandUI = nullptr;
 };

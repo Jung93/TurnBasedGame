@@ -14,4 +14,14 @@ class TBG_API UTBG_BattleCommandUI : public UUserWidget
 {
 	GENERATED_BODY()
 	
+public:
+	void SetLocation(FVector2D NewPosition);
+
+
+
+
+private:
+
+	UPROPERTY(VisibleAnywhere, meta = (BindWidget))
+	class UCanvasPanel* Panel;
 };
