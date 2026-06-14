@@ -12,23 +12,15 @@
 
 #include "UI/TBG_BattleCommandUI.h"
 
-
 void ATBG_BattleController::BeginPlay()
 {
 	Super::BeginPlay();
 
     
     BattleCommandUI = CreateWidget<UTBG_BattleCommandUI>(GetWorld()->GetFirstPlayerController(), BattleCommandUIClass);
-    BattleCommandUI->AddToViewport();
+    //BattleCommandUI->AddToViewport();
+    //BattleCommandUI->SetVisibility(ESlateVisibility::Hidden);
 
-    if (APawn* MyPawn = GetPawn())
-    {
-        FVector2D ScreenPos;
-        if (ProjectWorldLocationToScreen(MyPawn->GetActorLocation(), ScreenPos))
-        {
-            BattleCommandUI->SetLocation(ScreenPos);
-        }
-    }
 }
 
 void ATBG_BattleController::SetupInputComponent()
@@ -42,32 +34,58 @@ void ATBG_BattleController::SetupInputComponent()
 
     if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(InputComponent)) {
 
-        EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ThisClass::Look);
         EnhancedInputComponent->BindAction(ForTestAction, ETriggerEvent::Started, this, &ThisClass::ForTestFunction);
 
     }
 
 }
 
+void ATBG_BattleController::OnPossess(APawn* InPawn)
+{
+	Super::OnPossess(InPawn);
+
+	if (ATBG_Player* CurPlayer = Cast<ATBG_Player>(InPawn))
+	{
+        CurPlayer->SetBattleCamera(BattleCommandUIClass);
+	}
+}
+
 void ATBG_BattleController::Move(const FInputActionValue& Value)
 {
 }
 
-void ATBG_BattleController::Look(const FInputActionValue& Value)
-{
-	ATBG_Player* player = Cast<ATBG_Player>(GetPawn());
-
-	if (player)
-		player->Look(Value);
-}
+//void ATBG_BattleController::Look(const FInputActionValue& Value)
+//{
+//	ATBG_Player* player = Cast<ATBG_Player>(GetPawn());
+//
+//	if (player)
+//		player->Look(Value);
+//}
 
 void ATBG_BattleController::ForTestFunction(const FInputActionValue& Value)
 {
 
-    ATBG_Player* player = Cast<ATBG_Player>(GetPawn());
-
-    if(player)
-        player->EndTurn();
+    ATBG_Player* CurPlayer = Cast<ATBG_Player>(GetPawn());
 
 
+    CurPlayer->HideBattleCommandUI();
+
+
+    if(CurPlayer)
+        CurPlayer->EndTurn();
+
+
+}
+
+void ATBG_BattleController::ShowBattleCommandUI(ATBG_Player* CurPlayer)
+{
+    FVector2D ScreenPos;
+
+    if (ProjectWorldLocationToScreen(CurPlayer->GetActorLocation(), ScreenPos))
+    {
+
+        ScreenPos.X += 100.f;
+        BattleCommandUI->SetLocation(ScreenPos);
+        BattleCommandUI->SetVisibility(ESlateVisibility::Visible);
+    }
 }

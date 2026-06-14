@@ -161,10 +161,11 @@ void ATBG_BattleGameModeBase::AdvancedTurn()
     BC->UnPossess();
 
 
-    if (Cast<ATBG_Player>(BattleOrder[0]))
+    if (ATBG_Player* CurPlayer = Cast<ATBG_Player>(BattleOrder[0]))
     {
 
         BC->Possess(BattleOrder[0]);
+        //BC->ShowBattleCommandUI(CurPlayer);
     }
     else
     {

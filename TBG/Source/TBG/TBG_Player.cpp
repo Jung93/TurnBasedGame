@@ -17,6 +17,9 @@
 #include "System/TBG_GameInstance.h"
 
 #include "TBG_Enemy.h"
+#include "Components/WidgetComponent.h"
+#include "UI/TBG_BattleCommandUI.h"
+
 
 // Sets default values
 ATBG_Player::ATBG_Player()
@@ -50,6 +53,9 @@ ATBG_Player::ATBG_Player()
 	PlayerCamera->SetupAttachment(CameraArm, USpringArmComponent::SocketName); 
 	PlayerCamera->bUsePawnControlRotation = false; 
 
+	BattleCommandUI = CreateDefaultSubobject<UWidgetComponent>(TEXT("CommandUI"));
+	BattleCommandUI->SetupAttachment(GetMesh());
+	BattleCommandUI->SetWidgetSpace(EWidgetSpace::Screen);
 
 
 }
@@ -189,6 +195,30 @@ void ATBG_Player::ResetCombo()
 	CurAttackSection = 1;
 }
 
+void ATBG_Player::SetBattleCamera(TSubclassOf<UTBG_BattleCommandUI> BattleCommandUIClass)
+{
+	CameraArm->bUsePawnControlRotation = false;
+	CameraArm->TargetArmLength = 450.f;
+	CameraArm->SetRelativeRotation(FRotator(12.f, -20.f, 0.f));
+	CameraArm->SetRelativeLocation(FVector(0.f, 90.f, 0.f));
+	CameraArm->TargetOffset = FVector(0.f, 0.f, 60.f);
+	CameraArm->SocketOffset = FVector::ZeroVector;
+
+
+	BattleCommandUI->SetRelativeLocationAndRotation(FVector(0.0f, -200.0f, 200.0f), FRotator::ZeroRotator);
+	BattleCommandUI->SetWidgetClass(BattleCommandUIClass);
+	BattleCommandUI->SetCastShadow(false);
+
+}
+
+void ATBG_Player::HideBattleCommandUI()
+{
+
+	BattleCommandUI->SetWidgetClass(nullptr);
+	//BattleCommandUI->SetVisibility(false);
+
+}
+
 void ATBG_Player::FieldAttack_Hit()
 {
 	FHitResult hitResult;
@@ -250,7 +280,6 @@ void ATBG_Player::FieldAttack_Hit()
 
 void ATBG_Player::Attack_Hit()
 {
-	//���� ���� ���� Ȯ��
 	FHitResult hitResult;
 	FCollisionQueryParams params(NAME_None, false, this);
 

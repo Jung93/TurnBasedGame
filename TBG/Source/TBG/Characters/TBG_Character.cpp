@@ -38,6 +38,8 @@ void ATBG_Character::EndTurn()
 
 	ATBG_BattleGameModeBase* GameMode = Cast<ATBG_BattleGameModeBase>(GetWorld()->GetAuthGameMode());
 
+
+
 	if (GameMode)
 		GameMode->AdvancedTurn();
 

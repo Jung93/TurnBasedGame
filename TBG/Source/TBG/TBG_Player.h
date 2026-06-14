@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Characters/TBG_Character.h"
+#include "UI/TBG_BattleCommandUI.h"
 #include "TBG_Player.generated.h"
 
 class USpringArmComponent;
@@ -54,6 +55,9 @@ public:
 
 	const TArray<TSubclassOf<ATBG_Player>>& GetPlayerParty() const { return PlayerParty; }
 
+	void SetBattleCamera(TSubclassOf<UTBG_BattleCommandUI> BattleCommandUIClass);
+
+	void HideBattleCommandUI();
 
 
 private:
@@ -96,5 +100,9 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Party", meta = (AllowPrivateAccess = "true"))
 	TArray<TSubclassOf<ATBG_Player>> PlayerParty;
+
+
+	UPROPERTY(EditAnywhere, BlueprintReadwrite, Category = "UI", meta = (AllowPrivateAccess = "true"))
+	class UWidgetComponent* BattleCommandUI;
 
 };
