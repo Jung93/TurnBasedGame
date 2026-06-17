@@ -28,7 +28,6 @@ ATBG_Player::ATBG_Player()
 
 
 
-	// Don't rotate when the controller rotates. Let that just affect the camera.
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
@@ -67,7 +66,6 @@ void ATBG_Player::PostInitializeComponents()
 
 }
 
-// Called when the game starts or when spawned
 void ATBG_Player::BeginPlay()
 {
 	Super::BeginPlay();
@@ -188,6 +186,13 @@ void ATBG_Player::FieldAttack(const FInputActionValue& Value)
 void ATBG_Player::AttackEnd(class UAnimMontage* Montage, bool bInterrupted)
 {
 	IsAttack = false;
+
+	if (bPendingEndTurn)
+	{
+		bPendingEndTurn = false;
+		BattleAttackTarget = nullptr;
+		EndTurn();
+	}
 }
 
 void ATBG_Player::ResetCombo()
@@ -213,10 +218,21 @@ void ATBG_Player::SetBattleCamera(TSubclassOf<UTBG_BattleCommandUI> BattleComman
 
 void ATBG_Player::HideBattleCommandUI()
 {
-
 	BattleCommandUI->SetWidgetClass(nullptr);
-	//BattleCommandUI->SetVisibility(false);
+}
 
+void ATBG_Player::ShowBattleCommandUIWidget(TSubclassOf<UTBG_BattleCommandUI> Class)
+{
+	BattleCommandUI->SetWidgetClass(Class);
+}
+
+void ATBG_Player::ExecuteBattleAttack(ATBG_Enemy* Target)
+{
+	BattleAttackTarget = Target;
+	bPendingEndTurn = true;
+	IsAttack = true;
+	AnimInstance->PlayAttackMontage();
+	AnimInstance->JumpToSection(1);
 }
 
 void ATBG_Player::FieldAttack_Hit()

@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "Characters/TBG_Character.h"
 #include "UI/TBG_BattleCommandUI.h"
+#
+
 #include "TBG_Player.generated.h"
 
 class USpringArmComponent;
@@ -20,7 +22,6 @@ class TBG_API ATBG_Player : public ATBG_Character
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
 	ATBG_Player();
 
 protected:
@@ -29,10 +30,8 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	void Move(const FInputActionValue& Value);
@@ -58,6 +57,12 @@ public:
 	void SetBattleCamera(TSubclassOf<UTBG_BattleCommandUI> BattleCommandUIClass);
 
 	void HideBattleCommandUI();
+
+	// 커맨드 UI 위젯만 다시 표시
+	void ShowBattleCommandUIWidget(TSubclassOf<UTBG_BattleCommandUI> Class);
+
+	// 전투용 공격 실행 → 애니메이션 종료 후 EndTurn 호출
+	void ExecuteBattleAttack(class ATBG_Enemy* Target);
 
 
 private:
@@ -100,6 +105,11 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Party", meta = (AllowPrivateAccess = "true"))
 	TArray<TSubclassOf<ATBG_Player>> PlayerParty;
+
+	UPROPERTY()
+	class ATBG_Enemy* BattleAttackTarget = nullptr;
+
+	bool bPendingEndTurn = false;
 
 
 	UPROPERTY(EditAnywhere, BlueprintReadwrite, Category = "UI", meta = (AllowPrivateAccess = "true"))
