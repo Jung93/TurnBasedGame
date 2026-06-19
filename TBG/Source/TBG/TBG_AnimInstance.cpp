@@ -4,6 +4,7 @@
 #include "TBG_AnimInstance.h"
 #include "TBG_Player.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "System/TBG_BattleGameModeBase.h"
 
 UTBG_AnimInstance::UTBG_AnimInstance()
 {
@@ -22,7 +23,7 @@ void UTBG_AnimInstance::NativeUpdateAnimation(float DeltaTime)
 		Speed = Player->GetVelocity().Size();
 		IsJumping = Player->GetCharacterMovement()->IsFalling();
 		IsAttacking = Player->IsAttacking();
-
+		IsInBattle = GetWorld()->GetAuthGameMode()->IsA<ATBG_BattleGameModeBase>();
 	}
 }
 

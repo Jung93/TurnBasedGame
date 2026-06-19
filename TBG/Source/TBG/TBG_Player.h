@@ -5,8 +5,6 @@
 #include "CoreMinimal.h"
 #include "Characters/TBG_Character.h"
 #include "UI/TBG_BattleCommandUI.h"
-#
-
 #include "TBG_Player.generated.h"
 
 class USpringArmComponent;

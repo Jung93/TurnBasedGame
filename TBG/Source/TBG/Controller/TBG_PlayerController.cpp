@@ -30,7 +30,7 @@ void ATBG_PlayerController::SetupInputComponent()
         EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ThisClass::Move);
         EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &ThisClass::Jump);
         EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ThisClass::Look);
-        EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Triggered, this, &ThisClass::Attack);
+        EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Triggered, this, &ThisClass::FieldAttack);
 
     }
 
@@ -69,7 +69,7 @@ void ATBG_PlayerController::Attack(const FInputActionValue& Value)
     ATBG_Player* player = Cast<ATBG_Player>(GetPawn());
 
     if (player)
-        player->FieldAttack(Value);
+        player->Attack(Value);
 }
 
 void ATBG_PlayerController::FieldAttack(const FInputActionValue& Value)
