@@ -32,6 +32,18 @@ struct FStatus
 
 };
 
+USTRUCT(BlueprintType)
+struct FSkillInfo
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FText SkillName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 MPCost = 0;
+};
+
 UCLASS()
 class TBG_API ATBG_Character : public ACharacter
 {
@@ -70,6 +82,9 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Portrait")
 	TSoftObjectPtr<UTexture2D> Portrait = nullptr;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Skills")
+	TArray<FSkillInfo> Skills;
 
 
 

@@ -23,7 +23,8 @@ void UTBG_AnimInstance::NativeUpdateAnimation(float DeltaTime)
 		Speed = Player->GetVelocity().Size();
 		IsJumping = Player->GetCharacterMovement()->IsFalling();
 		IsAttacking = Player->IsAttacking();
-		IsInBattle = GetWorld()->GetAuthGameMode()->IsA<ATBG_BattleGameModeBase>();
+		AGameModeBase* GM = GetWorld() ? GetWorld()->GetAuthGameMode() : nullptr;
+		IsInBattle = GM ? GM->IsA<ATBG_BattleGameModeBase>() : false;
 	}
 }
 

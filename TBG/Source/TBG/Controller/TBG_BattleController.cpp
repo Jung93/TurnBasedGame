@@ -12,12 +12,14 @@
 #include "System/TBG_BattleGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/TBG_BattleCommandUI.h"
+#include "UI/TBG_SkillCommandUI.h"
 
 void ATBG_BattleController::BeginPlay()
 {
 	Super::BeginPlay();
 
 	BattleCommandUI = CreateWidget<UTBG_BattleCommandUI>(GetWorld()->GetFirstPlayerController(), BattleCommandUIClass);
+	// SkillCommandUI는 Player의 WidgetComponent에서 생성 (EnterSkillSelect 참고)
 }
 
 void ATBG_BattleController::SetupInputComponent()
@@ -36,6 +38,8 @@ void ATBG_BattleController::SetupInputComponent()
 		EnhancedInputComponent->BindAction(SkillCommandAction, ETriggerEvent::Started, this, &ThisClass::OnSkillCommand);
 		EnhancedInputComponent->BindAction(SelectNextTargetAction, ETriggerEvent::Started, this, &ThisClass::OnSelectNextTarget);
 		EnhancedInputComponent->BindAction(SelectPrevTargetAction, ETriggerEvent::Started, this, &ThisClass::OnSelectPrevTarget);
+		EnhancedInputComponent->BindAction(SelectNextSkillAction, ETriggerEvent::Started, this, &ThisClass::OnSelectNextSkill);
+		EnhancedInputComponent->BindAction(SelectPrevSkillAction, ETriggerEvent::Started, this, &ThisClass::OnSelectPrevSkill);
 		EnhancedInputComponent->BindAction(ConfirmAction, ETriggerEvent::Started, this, &ThisClass::OnConfirm);
 		EnhancedInputComponent->BindAction(CancelAction,  ETriggerEvent::Started, this, &ThisClass::OnCancel);
 	}
@@ -83,14 +87,15 @@ void ATBG_BattleController::OnAttackCommand(const FInputActionValue& Value)
 
 void ATBG_BattleController::OnSkillCommand(const FInputActionValue& Value)
 {
-	if (CommandState != EBattleCommandState::CommandSelect) 
+	if (CommandState != EBattleCommandState::CommandSelect)
 		return;
-	// 스킬 선택 UI 표시
+
+	EnterSkillSelect();
 }
 
 void ATBG_BattleController::OnSelectNextTarget(const FInputActionValue& Value)
 {
-	if (CommandState != EBattleCommandState::EnemySelect || EnemyTargets.IsEmpty()) 
+	if (CommandState != EBattleCommandState::EnemySelect || EnemyTargets.IsEmpty())
 		return;
 
 	CurrentTargetIndex = (CurrentTargetIndex + 1) % EnemyTargets.Num();
@@ -99,41 +104,76 @@ void ATBG_BattleController::OnSelectNextTarget(const FInputActionValue& Value)
 
 void ATBG_BattleController::OnSelectPrevTarget(const FInputActionValue& Value)
 {
-	if (CommandState != EBattleCommandState::EnemySelect || EnemyTargets.IsEmpty()) 
+	if (CommandState != EBattleCommandState::EnemySelect || EnemyTargets.IsEmpty())
 		return;
 
 	CurrentTargetIndex = (CurrentTargetIndex - 1 + EnemyTargets.Num()) % EnemyTargets.Num();
 	FocusOnEnemy(EnemyTargets[CurrentTargetIndex]);
 }
 
+void ATBG_BattleController::OnSelectNextSkill(const FInputActionValue& Value)
+{
+	if (CommandState != EBattleCommandState::SkillSelect || !SkillCommandUI)
+		return;
+
+	int32 Count = SkillCommandUI->GetSkillCount();
+	if (Count > 0)
+	{
+		CurrentSkillIndex = (CurrentSkillIndex + 1) % Count;
+		SkillCommandUI->SetSelectedIndex(CurrentSkillIndex);
+	}
+}
+
+void ATBG_BattleController::OnSelectPrevSkill(const FInputActionValue& Value)
+{
+	if (CommandState != EBattleCommandState::SkillSelect || !SkillCommandUI)
+		return;
+
+	int32 Count = SkillCommandUI->GetSkillCount();
+	if (Count > 0)
+	{
+		CurrentSkillIndex = (CurrentSkillIndex - 1 + Count) % Count;
+		SkillCommandUI->SetSelectedIndex(CurrentSkillIndex);
+	}
+}
+
 void ATBG_BattleController::OnConfirm(const FInputActionValue& Value)
 {
-	if (CommandState != EBattleCommandState::EnemySelect) 
-		return;
+	if (CommandState == EBattleCommandState::EnemySelect)
+	{
+		if (!EnemyTargets.IsValidIndex(CurrentTargetIndex))
+			return;
 
-	if (!EnemyTargets.IsValidIndex(CurrentTargetIndex)) 
-		return;
+		ATBG_Enemy* Target = EnemyTargets[CurrentTargetIndex];
+		ATBG_Player* CurPlayer = Cast<ATBG_Player>(GetPawn());
+		if (!CurPlayer || !Target)
+			return;
 
-	ATBG_Enemy* Target = EnemyTargets[CurrentTargetIndex];
-	ATBG_Player* CurPlayer = Cast<ATBG_Player>(GetPawn());
-	if (!CurPlayer || !Target) 
-		return;
+		SetViewTargetWithBlend(CurPlayer, 0.3f);
+		CommandState = EBattleCommandState::Idle;
+		EnemyTargets.Empty();
 
-	// 플레이어 카메라로 복귀 후 공격 실행
-	SetViewTargetWithBlend(CurPlayer, 0.3f);
-	CommandState = EBattleCommandState::Idle;
-	EnemyTargets.Empty();
+		CurPlayer->ExecuteBattleAttack(Target);
+	}
+	else if (CommandState == EBattleCommandState::SkillSelect)
+	{
+		ATBG_Player* CurPlayer = Cast<ATBG_Player>(GetPawn());
+		if (!CurPlayer)
+			return;
 
-	// 공격 애니메이션 재생 → AttackEnd에서 자동으로 EndTurn 호출됨
-	CurPlayer->ExecuteBattleAttack(Target);
+		SkillCommandUI = nullptr;
+		CommandState = EBattleCommandState::Idle;
+		CurPlayer->HideBattleCommandUI();
+		CurPlayer->ExecuteBattleSkill(CurrentSkillIndex);
+	}
 }
 
 void ATBG_BattleController::OnCancel(const FInputActionValue& Value)
 {
-	if (CommandState != EBattleCommandState::EnemySelect) 
-		return;
-
-	ExitEnemySelect();
+	if (CommandState == EBattleCommandState::EnemySelect)
+		ExitEnemySelect();
+	else if (CommandState == EBattleCommandState::SkillSelect)
+		ExitSkillSelect();
 }
 
 void ATBG_BattleController::FocusOnEnemy(ATBG_Enemy* Enemy)
@@ -199,6 +239,37 @@ void ATBG_BattleController::ExitEnemySelect()
 
 	CurPlayer->ShowBattleCommandUIWidget(BattleCommandUIClass);
 	SetViewTargetWithBlend(CurPlayer, 0.3f);
+}
+
+void ATBG_BattleController::EnterSkillSelect()
+{
+	ATBG_Player* CurPlayer = Cast<ATBG_Player>(GetPawn());
+	if (!CurPlayer || !SkillCommandUIClass)
+		return;
+
+	if (CurPlayer->Skills.IsEmpty())
+		return;
+
+	CurrentSkillIndex = 0;
+
+	// BattleCommandUI WidgetComponent를 재사용 → Player 옆에 위치
+	SkillCommandUI = CurPlayer->ShowSkillCommandUI(SkillCommandUIClass);
+	if (SkillCommandUI)
+		SkillCommandUI->InitSkills(CurPlayer->Skills);
+
+	CommandState = EBattleCommandState::SkillSelect;
+}
+
+void ATBG_BattleController::ExitSkillSelect()
+{
+	SkillCommandUI = nullptr;
+
+	ATBG_Player* CurPlayer = Cast<ATBG_Player>(GetPawn());
+	if (!CurPlayer)
+		return;
+
+	CurPlayer->ShowBattleCommandUIWidget(BattleCommandUIClass);
+	CommandState = EBattleCommandState::CommandSelect;
 }
 
 void ATBG_BattleController::ShowBattleCommandUI(ATBG_Player* CurPlayer)

@@ -12,6 +12,7 @@ enum class EBattleCommandState : uint8
 	Idle,           // 입력 대기 없음 (애니메이션 재생 중)
 	CommandSelect,  // 커맨드 선택 대기 중
 	EnemySelect,    // 적 타겟 선택 중 (Attack 커맨드 선택 후)
+	SkillSelect,    // 스킬 선택 중 (Skill 커맨드 선택 후)
 };
 
 UCLASS()
@@ -25,6 +26,8 @@ public:
 	void EnterCommandSelect();
 	void EnterEnemySelect();
 	void ExitEnemySelect();
+	void EnterSkillSelect();
+	void ExitSkillSelect();
 
 protected:
 
@@ -42,6 +45,8 @@ protected:
 	void OnSkillCommand(const struct FInputActionValue& Value);
 	void OnSelectNextTarget(const struct FInputActionValue& Value);
 	void OnSelectPrevTarget(const struct FInputActionValue& Value);
+	void OnSelectNextSkill(const struct FInputActionValue& Value);
+	void OnSelectPrevSkill(const struct FInputActionValue& Value);
 	void OnConfirm(const struct FInputActionValue& Value);
 	void OnCancel(const struct FInputActionValue& Value);
 
@@ -72,6 +77,12 @@ private:
 	class UInputAction* SelectPrevTargetAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* SelectNextSkillAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* SelectPrevSkillAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* ConfirmAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
@@ -90,4 +101,12 @@ public:
 
 	UPROPERTY()
 	class UTBG_BattleCommandUI* BattleCommandUI = nullptr;
+
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<class UTBG_SkillCommandUI> SkillCommandUIClass;
+
+	UPROPERTY()
+	class UTBG_SkillCommandUI* SkillCommandUI = nullptr;
+
+	int32 CurrentSkillIndex = 0;
 };

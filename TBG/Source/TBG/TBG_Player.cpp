@@ -19,6 +19,7 @@
 #include "TBG_Enemy.h"
 #include "Components/WidgetComponent.h"
 #include "UI/TBG_BattleCommandUI.h"
+#include "UI/TBG_SkillCommandUI.h"
 
 
 // Sets default values
@@ -210,7 +211,7 @@ void ATBG_Player::SetBattleCamera(TSubclassOf<UTBG_BattleCommandUI> BattleComman
 	CameraArm->SocketOffset = FVector::ZeroVector;
 
 
-	BattleCommandUI->SetRelativeLocationAndRotation(FVector(0.0f, -200.0f, 200.0f), FRotator::ZeroRotator);
+	BattleCommandUI->SetRelativeLocationAndRotation(BattleCommandUIOffset, FRotator::ZeroRotator);
 	BattleCommandUI->SetWidgetClass(BattleCommandUIClass);
 	BattleCommandUI->SetCastShadow(false);
 
@@ -223,6 +224,7 @@ void ATBG_Player::HideBattleCommandUI()
 
 void ATBG_Player::ShowBattleCommandUIWidget(TSubclassOf<UTBG_BattleCommandUI> Class)
 {
+	BattleCommandUI->SetRelativeLocation(BattleCommandUIOffset);
 	BattleCommandUI->SetWidgetClass(Class);
 }
 
@@ -233,6 +235,18 @@ void ATBG_Player::ExecuteBattleAttack(ATBG_Enemy* Target)
 	IsAttack = true;
 	AnimInstance->PlayAttackMontage();
 	AnimInstance->JumpToSection(1);
+}
+
+UTBG_SkillCommandUI* ATBG_Player::ShowSkillCommandUI(TSubclassOf<UTBG_SkillCommandUI> Class)
+{
+	BattleCommandUI->SetRelativeLocation(SkillCommandUIOffset);
+	BattleCommandUI->SetWidgetClass(Class);
+	return Cast<UTBG_SkillCommandUI>(BattleCommandUI->GetWidget());
+}
+
+void ATBG_Player::ExecuteBattleSkill(int32 SkillIndex)
+{
+	EndTurn();
 }
 
 void ATBG_Player::FieldAttack_Hit()

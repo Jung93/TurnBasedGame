@@ -59,8 +59,13 @@ public:
 	// 커맨드 UI 위젯만 다시 표시
 	void ShowBattleCommandUIWidget(TSubclassOf<UTBG_BattleCommandUI> Class);
 
+	// 플레이어 옆 WidgetComponent에 스킬 UI 표시 후 위젯 포인터 반환
+	class UTBG_SkillCommandUI* ShowSkillCommandUI(TSubclassOf<class UTBG_SkillCommandUI> Class);
+
 	// 전투용 공격 실행 → 애니메이션 종료 후 EndTurn 호출
 	void ExecuteBattleAttack(class ATBG_Enemy* Target);
+
+	void ExecuteBattleSkill(int32 SkillIndex);
 
 
 private:
@@ -112,5 +117,11 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadwrite, Category = "UI", meta = (AllowPrivateAccess = "true"))
 	class UWidgetComponent* BattleCommandUI;
+
+	UPROPERTY(EditAnywhere, Category = "UI", meta = (AllowPrivateAccess = "true"))
+	FVector BattleCommandUIOffset = FVector(0.f, -200.f, 200.f);
+
+	UPROPERTY(EditAnywhere, Category = "UI", meta = (AllowPrivateAccess = "true"))
+	FVector SkillCommandUIOffset = FVector(0.f, -200.f, 200.f);
 
 };
